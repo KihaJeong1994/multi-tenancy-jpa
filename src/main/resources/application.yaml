@@ -1,0 +1,38 @@
+server:
+  port: 8080
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/blog
+    username: postgres
+    password: secret
+    hikari:
+      maximumPoolSize: 2
+      minimumIdle: 0
+      idleTimeout: 30000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+multitenancy:
+  schema-cache:
+    maximumSize: 100
+    expireAfterAccess: 1
+  master:
+    repository:
+      packages: com.example.multitenenttest.repository.master
+    entityManager:
+      packages: com.example.multitenenttest.domain.entity.master
+    liquibase:
+      enabled: true
+      changeLog: classpath:db/changelog/db.changelog-master.yaml
+  tenant:
+    repository:
+      packages: com.example.multitenenttest.repository.tenant
+    entityManager:
+      packages: com.example.multitenenttest.domain.entity.tenant
+    liquibase:
+      changeLog: classpath:db/changelog/db.changelog-tenant.yaml
