@@ -29,3 +29,13 @@ databaseChangeLog:
             dbms: 'postgresql'
             sql: >-
               ALTER SEQUENCE ${schema}.product_id_seq RESTART WITH 100000;
+  - changeSet:
+      id: addColumn-example
+      author: liquibase-docs
+      changes:
+        - addColumn:
+            tableName: product
+            columns:
+              - column:
+                  name: phone
+                  type: varchar(50)

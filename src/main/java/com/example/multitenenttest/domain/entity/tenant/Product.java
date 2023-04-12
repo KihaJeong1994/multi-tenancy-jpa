@@ -42,4 +42,7 @@ public class Product {
     @Column(name = "version", nullable = false, columnDefinition = "int default 0")
     protected Integer version;
 
+    @Column(name = "phone", nullable = true, columnDefinition = "int default 0")
+    protected String phone;
+
 }
